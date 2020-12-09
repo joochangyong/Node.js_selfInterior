@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../head/head.ejs');%>
+    <%- include('../head/header.ejs');%>
+</head>
+
+<body>
+    <form class="form-signin" method="post" action="/users/supplier_login">
+        <div class="row">
+            <%- include('../login/supplier_login_detail.ejs');%>
+        </div>
+    </form>
+</body>
+
+<footer>
+    <%- include('../footer/footer.ejs');%>
+</footer>
+</html>

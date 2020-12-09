@@ -1,0 +1,69 @@
+<div class="col-lg-10">
+    <div style="width: 100%; float: left; margin-left: 16%; margin-top: 3%">
+
+        <!-- 평수 드롭다운 -->
+        <div class="dropdown" style="float: left; margin-right: 1%;">
+            <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                평수
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/interior/interior_board/10평미만">10평 미만</a>
+                <a class="dropdown-item" href="/interior/interior_board/10평대">10평대</a>
+                <a class="dropdown-item" href="/interior/interior_board/20평대">20평대</a>
+                <a class="dropdown-item" href="/interior/interior_board/30평대">30평대</a>
+                <a class="dropdown-item" href="/interior/interior_board/40평이상">40평 이상</a>
+            </div>
+        </div>
+
+        <!-- 스타일 드롭다운 -->
+        <div class="dropdown" style="float: left;margin-right: 1%;">
+            <button class="form-control dropdown-toggle" type="button" style="width: 100px;" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                스타일
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <%for (var i = 0; i < style.length; i++) {%>
+                    <a href="/interior/interior_board/<%=style[i].style_name%>"><button class="dropdown-item gray1" type="button"><%=style[i].style_name%></button></a>
+                <%}%>
+            </div>
+        </div>
+
+        <!-- 공간 드롭다운 -->
+        <div class="dropdown" style="float: left;">
+            <button class="form-control dropdown-toggle" type="button" style="width: 100px;" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                공간
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <%for (var i = 0; i < space.length; i++) {%>
+                    <a href="/interior/interior_board/<%=space[i].space_name%>"><button class="dropdown-item gray1" type="button"><%=space[i].space_name%></button></a>
+                <%}%>
+            </div>
+        </div>
+        <% if (user.userid != null) { %>
+        <a href="/interior/interior_posting"style="margin-left: 48%"><button class="btn btn-outline-dark gray1" type="button" > 인테리어 등록하기</button></a>
+        <% } else { %>
+            <a href="/users/login"style="margin-left: 48%"><button class="btn btn-outline-dark gray1" type="button" > 인테리어 등록하기</button></a>
+            <% } %>
+    </div>
+
+    <!-- 포문으로 요래 조래 쇽 쇽 -->
+    <div style="width: 100%; float: left;">
+        <div class="row" style="margin-top: 3%; margin-left: 15%">
+
+            <% for(var i=0; i< content.length; i++) {%>
+            <div class="col-lg-3 col-md-4 mb-4">
+                <div class="card h-100">
+                    <a href="/interior/interior_detail/<%= content[i].post_num %>"><img class="card-img-top" src="../../<%= content[i].post_img_path %>"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="/interior/interior_detail/<%= content[i].post_num %>"><%= content[i].post_title %></a>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>

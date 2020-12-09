@@ -1,0 +1,181 @@
+<div style="margin-left: 20%; margin-top: 4%">
+    <div style="width: 100%; height: 570px;">
+
+        <div style="width:45%; float: left;">
+
+
+            <div style="width: 490px">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                      <div class="trislider">
+                        <ol class="carousel-indicators">
+              
+                          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                          <% if (product.length > 1) {%>
+                          <% for(var i=1; i< product.length; i++) { %>
+                          <li data-target="#carouselExampleIndicators" data-slide-to="<%= i %>"></li>
+                          <% } %>
+                          <% } %>
+                        </ol>
+              
+                        <!-- 슬라이드 화면 3개 -->
+                        <div class="carousel-inner" role="listbox">
+              
+                          <div class="carousel-item active"><img src="../../<%= product[0].product_img_path%>"
+                              style="width: 100%; height: 100%;">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                          </div>
+                          <% for(var i=1; i< product.length; i++) { %>
+              
+                          <div class="carousel-item"><img src="../../<%= product[i].product_img_path%>" style="width: 490px; height:490px;">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                          </div>
+              
+                          <% } %>
+              
+                        </div>
+              
+                        <!-- 이전 버튼, 다음 버튼 -->
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+              
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                      </div>
+                    </div> <!-- 인테리어 이미지 -->
+                  </div>
+        </div>
+        
+        <form action="/product/product_detail/<%=product[0].product_num%>" method="post">
+            <div style="width:40%; float: left;">
+                <h5 style="margin-bottom: 10%"><%=product[0].supplier_id%></h5>
+                <h5 style="margin-bottom: 10%"><%=product[0].product_name%></h5>
+                <h5 style="margin-bottom: 10%">가격 : <%=product[0].price%>원</h5>
+                <h5 style="margin-bottom: 10%">별점 : <%=product[0].average_star%>점</h5>
+                <h5 style="margin-bottom: 10%">재고 : <%=product[0].product_amount%>개</h5>
+
+                <div style="width: 100%">
+                    <h5 style="float: left">수량 </h5>
+                    <input type="number" value="1" min="1" max="<%=product[0].product_amount%>" name="amount"
+                        class="form-control" style="width:20%; height: 20%; margin-left: 3%; float: left;" />
+                </div>
+                <br><br><br>
+                <div style="width: 100%; margin-bottom: 5%">
+                        <% if (supplier1[0].supplier_id == supplier.supplier_id) { %>
+                            <input type="button" class="btn blue1" style="color: white" onclick="location.href=`/product/product_delete/<%=product[0].product_num%>`" value="삭제하기" />
+                            <input type="button"  class="btn blue1" onclick="location.href=`/product/product_update/<%=product[0].product_num%>`"
+                                style="float: left; margin-right: 5%; color: white" value="수정하기" />
+                        <% } else { %>
+                            <%if (product[0].product_amount==0) {%>
+                            <button disabled class="btn blue1" style="width: 35%;">품절</button>
+                            <%}else{%>
+                            <input type="submit" name="button" class="btn blue1" style="color: white" value="바로구매" />
+                            <input type="submit" name="button" class="btn blue1"
+                                style="float: left; margin-right: 5%; color: white" value="장바구니" />
+                            <%}%>
+                        <% } %>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <hr style="width: 70%; margin-bottom: 5%; float: left">
+
+    <div class="row" style="width: 100%; height: 200px;">
+
+        <h4 style="width:15%; float: left; margin-left: 3%">상세정보</h4>
+        <div style="width: 50%; float: left">
+            <p><%=product[0].product_info%></p>
+                </div>
+
+            </div>
+            <hr style="width: 70%; float: left">
+            <br> <br> <br>
+<%if (user.userid != null) {%>
+    
+    <div>
+        <form action="/product/review/<%=product[0].product_num%>" method="post">
+            <h4>리뷰 등록</h4>
+            <h5 style="margin-left: 15%; margin-right: 7%; float: left;">별점</h5>
+            <select name="star" class="custom-select d-block" id="country" style="width:15%; margin-bottom:3%;"
+                required>
+                <option value="">별점을 고르세요...</option>
+                <option value="1">1 </option>
+                <option value="2">2 </option>
+                <option value="3">3 </option>
+                <option value="4">4 </option>
+                <option value="5">5 </option>
+            </select>
+
+            <h5 style="margin-left: 15%; margin-right: 4%; float: left;">상세내용</h5>
+            <input type="text" class="form-control" name="review_info" style="width:44%; height:100px;">
+            <input type="submit" class="btn btn-outline-secondary" style="margin-left:65%; margin-top:3%"
+                value="등록" />
+        </form>
+    </div>
+    <br> <br>
+    <hr style="width: 70%; float: left">
+<%}%>
+
+            <br> <br> <br>
+            <div style="margin-bottom: 5%">
+                <h4>리뷰 조회</h4>
+
+                <table id="mytable" style="margin-left: 1%; margin-top:3%" class="table col-8">
+                    <thead class="brown6 gray2">
+                        <th>번호</th>
+                        <th>아이디</th>
+                        <th>작성일</th>
+                        <th>별점</th>
+                    </thead>
+
+                    <!-- 요기서 -->
+
+                    <tbody>
+                        <%for (let i = 0; i < review.length; i++) {%>
+                        <tr>
+                            <td style="vertical-align: middle;">
+                                <h6><%=i+1%></h6>
+                            </td>
+                            <td style="vertical-align: middle;">
+                                <h6><%=review[i].id%></h6>
+                            </td>
+                            <td style="vertical-align: middle; ">
+                                <h6><%=review[i].write_time%></h6>
+                            </td>
+                            <td style="vertical-align: middle;">
+                                <%=review[i].product_star%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <%console.log('11111',update[0].id);%>
+                            <%console.log('22222',user.userid);%>
+                            <% if (user.userid == null) { %>
+                            <td> 상세내용 </td>
+                            <td colspan="3" style="text-align: start"><%=review[i].review_info%></td>
+                            <% } else { %>
+                                <% if( (review[i].id == user.userid) ) { %>
+                                    <td> 상세내용 </td>
+                                    <td colspan="2" style="text-align: start"><%=review[i].review_info%></td>
+                                    <td><input type="button" onclick='location.href="/product/review_update/<%=update[0].id%>/<%= update[0].product_num %>"' class="btn btn-outline-secondary" value="수정">
+                                    <input type="button" class="btn btn-outline-secondary" value="삭제" onclick='location.href="/product/review_delete/<%=update[0].product_num%>"'></td>
+                                <% } else { %>
+                                    <td> 상세내용 </td>
+                                    <td colspan="3" style="text-align: start"><%=review[i].review_info%></td>
+                                <% } %>
+                            <% }  %>
+                        <%}%>
+                    </tbody>
+
+                </table>
+            </div>
+    </div>
+    
+    
+
+   

@@ -1,0 +1,23 @@
+<form method="POST" action="/users/client_signup">
+<div class="container col-md-5" style="margin-top: 3%; margin-bottom : 3%">
+    <h3 style="margin-bottom: 10%">사용자 회원가입</h3>
+    <h5 style="float:left; margin-right: 5%; width: 90px;">아이디 </h5> <input type="text" name="id" class="form-control" style="width:40%; margin-bottom: 5%"/>
+    <h5 style="float:left; margin-right: 5%; width: 90px;">비밀번호 </h5> <input type="password" name="pw" class="form-control" style="width:40%; margin-bottom: 5%"/>
+    <h5 style="float:left; margin-right: 5%; width: 90px;">이름 </h5> <input type="text" name="name" class="form-control" style="width:40%; margin-bottom: 5%"/>
+    <h5 style="float:left; margin-right: 5%; width: 90px;">나이 </h5> <input type="text" name="age" class="form-control" style="width:40%; margin-bottom: 5%"/>
+    <h5 style="float:left; margin-right: 5%; width: 90px;">성별 </h5> 
+    <div class="btn-group btn-group-toggle" data-toggle="buttons" style="width:40%; float: left; margin-bottom: 5%">
+        <label class="btn btn-outline-secondary">
+            <input type="radio" name="sex" value ="남자" id="sex1"> 남자
+        </label>
+        <label class="btn btn-outline-secondary">
+            <input type="radio" name="sex" value ="여자" id="sex2"> 여자
+        </label>
+    </div>
+    <br><br><br>
+
+    <h5 style="float:left; margin-right: 5%; width: 90px;">전화번호 </h5> <input type="text" name="phone_num" class="form-control" style="width:40%; margin-bottom: 5%" placeholder="***-****-****"/>
+    <h5 style="float:left; margin-right: 5%; width: 90px;">이메일 </h5> <input type="email" name="email" class="form-control" style="width:40%; margin-bottom: 5%" />
+    <input class="btn blue1" type="submit" style="width: 100%" value="완료"/>
+</div>
+</form>

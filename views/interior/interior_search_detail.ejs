@@ -1,0 +1,33 @@
+<div class="container-fluid updown">
+        <div class="row">
+            <div class="col-md-10 offset-1">
+                <h5 style="margin-bottom: 3%; float: left; color:red; margin-top: 2%">"<%=key%>"</h5>   <!-- 검색어 -->
+                <h5 style="margin-bottom: 3%; margin-top: 2%">의 총 <%=product.length%>개의 상품이 검색되었습니다.</h5>
+                <table id="mytable" class="table">
+                    <thead>
+                        <th style="width: 5%">번호</th>
+                        <th style="width: 60%">상품명</th>
+                        <th>가격</th>
+                    </thead>
+                    <tbody>
+                        <%for (let i = 0; i < product.length; i++) {%>
+                            <tr>
+                                <td>
+                                    <h6><%=i+1%></h6>
+                                </td>
+                                <td> <a href="/product/product_detail/<%=product[i].product_num%>"><img src="../../<%=product[i].product_img_path%>" alt=""
+                                            style="float: left; margin-left: 5%; width: 13%; height: auto;"></a>
+                                    <p style="text-align: justify; margin-left: 20%; margin-top: 2%"><a href="/product/product_detail/<%=product[i].product_num%>">
+                                        <%=product[i].product_name%></a></p>
+                                    <p style="text-align: left; margin-left: 20%;"> <%=product[i].supplier_name%> </p>
+                                </td>
+                                <td>
+                                    <p style="margin-top: 8%;"><%=product[i].price%>원</p>
+                                </td>
+                            </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

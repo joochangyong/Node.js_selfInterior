@@ -1,0 +1,63 @@
+<div style="width: 100%; margin-right: 10%; margin-left: 10%;">
+    <h4 class="gray1" style="margin-top: 5%; margin-bottom:5%">인테리어 올리기</h4>
+    <div style="width: 100%; float:left">
+            <h5 style="float: left; margin-right: 5%">제목</h5>
+            <input type="text" class="form-control" name="post_title" style="width:50%; height: 50px; margin-bottom: 5%" required />
+        <div class="row">
+            <div class="col-1">
+                <h5 style="float: left; margin-right: 5%">평수</h5>
+            </div>
+            <div class="col-11">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons"
+                    style="width:40%; float: left; margin-bottom: 5%">
+                    <label class="btn btn-outline-secondary"> <input type="radio" name="area" value="10평미만" id=""> 10평 미만 </label>
+                    <label class="btn btn-outline-secondary"> <input type="radio" name="area" value="10평대" id=""> 10평대 </label>
+                    <label class="btn btn-outline-secondary"> <input type="radio" name="area" value="20평대" id=""> 20평대 </label>
+                    <label class="btn btn-outline-secondary"> <input type="radio" name="area" value="30평대" id=""> 30평대 </label>
+                    <label class="btn btn-outline-secondary"> <input type="radio" name="area" value="40평이상" id=""> 40평 이상 </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <h5 style="float: left;">스타일</h5>
+            </div>
+            <div class="col-11">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons"
+                    style="width:90%; float: left; margin-bottom: 5%">
+                    <% for(var i=0; i< style.length; i++) {%>
+                    <label class="btn btn-outline-secondary">
+                        <input type="checkbox" name="style" value="<%= style[i].style_name %>">
+                        <%= style[i].style_name %>
+                    </label>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <h5 style="float: left; margin-right: 5%">공간</h5>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons" style="width:90%; float: left; margin-bottom: 5%">
+            <% for(var j=0; j< space.length; j++) {%>
+            <label class="btn btn-outline-secondary">
+                <input type="checkbox" name="space" value="<%= space[j].space_name %>"> <%= space[j].space_name %>
+            </label>
+            <% } %>
+        </div>
+    </div>
+    <h5 style="float: left; margin-right: 5%">인테리어 상세내용</h5>
+    <input type="text" class="form-control" name="post_info" style="width:75%; height: 100px; margin-bottom: 5%" required />
+    <div class="row">
+        <div>
+            <h4>사진 업로드</h4>
+            <div id="parah"></div>
+            <input type='file' id='test' name='fileupload' multiple>
+        </div>
+        <div style="margin-left: 10%">
+            <h4>태그 업로드</h4>
+            <div id="parah1"></div>
+            <input class="btn btn-outline-secondary" type="button" value="추가" onclick="addInput1();" />
+            <input class="btn btn-outline-secondary" type="button" value="삭제" onclick="deleteInput1();" />
+        </div>
+    </div>
+    <input class="form-control mainblue" type="submit" value="올리기" href="/"
+        style="width: 10%; float: right; margin-top: 3%; margin-bottom: 3%">
+</div>

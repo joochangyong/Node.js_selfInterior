@@ -1,0 +1,18 @@
+    <div class="container-fluid">
+        <div class="col-md-8 offset-4">
+            <h3 style="margin-top: 3%"><%=supplierinfo[0].supplier_id%>님 정보 수정</h3></br>
+            <h5 style="margin-top: 2%; float: left; margin-right: 3%">업체명</h5>
+            <input type="text" name="storeName" value="<%=supplierinfo[0].supplier_name%>" class="form-control"
+                style="width: 30%; float: left; margin-top: 1%"></br></br></br>
+            <h5 style="margin-top: 2%; float: left; margin-right: 3%">비밀번호</h5>
+            <input type="password" name="sellerPw" value="" class="form-control"
+                style="width: 30%; float: left; margin-top: 1%"></br></br></br>
+            <h5 style="margin-top: 2%; float: left; margin-right: 3%">대표 전화번호</h5>
+            <input type="text" name="sellerPhone" value="<%=supplierinfo[0].phone_num%>" class="form-control"
+                style="width: 30%; float: left; margin-top: 1%"></br></br></br>
+            <h5 style="margin-top: 2%; float: left; margin-right: 3%">대표 이메일</h5>
+            <input type="text" name="sellerEmail" value="<%=supplierinfo[0].supplier_email%>" class="form-control"
+                style="width: 30%; float: left; margin-top: 1%"></br></br></br>
+            <input type="submit" class="btn blue1" style="width: 41%; margin-bottom: 5%" value="수정완료">
+        </div>
+    </div>

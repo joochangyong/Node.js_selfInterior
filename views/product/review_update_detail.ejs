@@ -1,0 +1,17 @@
+<form action="/product/review_update/<%=pa1%>/<%=pa2%>" method="POST">
+    <div style="margin-left: 25%; margin-right:25%; margin-top:5%; margin-bottom:5%">
+        <h2 style=" margin-bottom:5%">리뷰 수정</h2>
+        <h4 style="float: left;  margin-right:10%;">별점</h4> 
+        <div class="btn-group btn-group-toggle" data-toggle="buttons"
+        style="width:40%; float: left; margin-bottom: 5%">
+        <label class="btn btn-outline-secondary"> <input type="radio" name="star" value="1" id="">1</label>
+        <label class="btn btn-outline-secondary"> <input type="radio" name="star" value="2" id="">2</label>
+        <label class="btn btn-outline-secondary"> <input type="radio" name="star" value="3" id="">3</label>
+        <label class="btn btn-outline-secondary"> <input type="radio" name="star" value="4" id="">4</label>
+        <label class="btn btn-outline-secondary"> <input type="radio" name="star" value="5" id="">5</label>
+    </div><br><br><br><br>
+    <h4 style="float: left;  margin-right:10%; margin-bottom: 3%">상세내용</h4> 
+    <input class="form-control" style="height: 80px; margin-bottom: 3%" name="info">
+    <input class="btn blue1" value="완료" type="submit" style="width: 100%">
+    </div>
+</form>

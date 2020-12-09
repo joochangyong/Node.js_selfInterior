@@ -1,0 +1,51 @@
+<div class="col-10 offset-1" style="margin-top: 3%; margin-bottom:3%">
+        <h3 style="margin-bottom: 3%">주문목록조회</h3>
+        <table id="mytable" class="table">
+                <thead class="brown6 gray2">
+                    <th>번호</th>
+                    <th>고객아이디</th>
+                    <th>상품명</th>
+                    <th>카드</th>
+                    <th>주소지</th>
+                    <th>수량</th>
+                    <th>주문날짜</th>
+                </thead>
+    
+    
+    <!-- 요기서 -->
+    
+    <tbody>
+    <%for (let i = 0; i < order.length; i++) {%>
+        
+            <tr>
+                <td style="vertical-align: middle;">
+                    <h6><%=i+1%></h6>
+                </td>
+                <td style="vertical-align: middle;">
+                        <h6><%=order[i].id%></h6>
+                    </td>
+                <td style="vertical-align: middle; "> <a href="/product/product_detail/<%=order[i].product_num%>">
+                        <img class="basketimage" src="../../<%=order[i].product_img_path%>" alt=""
+                            style="float: left; height: 60px; width: 60px" name="BookImg"></a>
+                    <a href="/product/product_detail/<%=order[i].product_num%>">
+                        <p style="text-align: middle; margin-left: 32%"><%=order[i].product_name%>
+                    </a><br>
+                </td>
+                <td style="vertical-align: middle;">
+                        <%=order[i].card_num%>
+                </td>
+                <td style="vertical-align: middle;">
+                        <%=order[i].zipcode%> | <%=order[i].pri_address%> | <%=order[i].det_address%>
+                </td>
+                <td style="vertical-align: middle;">
+                        <%=order[i].amount%>
+                </td>
+                <td style="vertical-align: middle;">
+                        <%=order[i].order_time%>
+                </td>
+            </tr>
+            <%}%>
+        </tbody>
+    
+            </table>
+    </div>

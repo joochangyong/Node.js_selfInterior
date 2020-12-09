@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-fixed-top" style="background-color :rgb(222,235,247); ">
+    <div class="col">
+        <div class="container-fluid" style="margin-left: 20%">
+            <div class="col-md-2" style="float: left;">
+                <a class="navbar-brand" href="/">
+                    <!-- 메인 이미지 -->
+                    <img alt="Brand" src="..\..\..\images\brand.png" style="width: 80%; height: 50%; margin-left:20%">
+                </a>
+            </div>
+            <form action="/product/product_search" method="post">
+                <!-- 검색 창 + 검색버튼 -->
+                <div class="form-group has-success has-feedback" style="padding-top:0.5%;">
+                    <input type="text" class="form-control" style="width: 30%; float: left;" name="keyWord">
+                    <input class="btn btn-default gray1" style="margin-left: 1%;" type="submit" value="검색">
+                </div>
+            </form>
+        </div>
+        <div style="width: 100%; font-size: larger;" class="container col-md-12">
+
+            <div class="dropdown col-3">
+                <!-- 인테리어 드롭다운 -->
+                <a href="/interior/interior_board"><button class="btn gray1" style=" float: left; font-size:large; margin-right: 5%" type="button" >인테리어</button></a>
+
+            </div>
+
+            <div class="dropdown col-3">
+                <!-- 스토어 드롭다운 -->
+                <a href="/product/product_board"><button class="btn gray1" style=" float: left; font-size:large;" type="button">스토어</button></a>
+            </div>
+
+            <!-- 오른쪽 버튼 친구들 -->
+            <div class="pull-right" style="float: right; width: 30%; height: auto">
+                <% if(user.userid == null&&supplier.supplier_id == null) { %>
+                <a class="gray1" href="/users/login" style="margin-right: 5%;">로그인</a>
+                <a class="gray1" href="/users/client_signup" style="margin-right: 5%;">회원가입</a>
+                <a class="gray1" href="/users/supplier_signup" style="margin-right: 5%;">입점문의</a>
+                <a class="gray1" href="/users/login" >장바구니</a>
+                <% } else if(user.userid != null) { %>
+                <a class="gray1" href="/users/logout" style="margin-left:20%; margin-right: 5%;">로그아웃</a>
+                <a class="gray1" href="/users/client_mypage" style="margin-right: 5%;">마이페이지</a>
+                <a class="gray1" href="/basket/basket">장바구니</a>
+                <% }else if(supplier.supplier_id != null) { %>
+                <a class="gray1" href="/users/supplier_logout" style="margin-left:35%; margin-right: 10%;">로그아웃</a>
+                <a class="gray1" href="/users/supplier_mypage" style="margin-right: 10%;">마이페이지</a>
+                <% } %>
+            </div>
+        </div>
+</nav>

@@ -1,0 +1,25 @@
+<div style="width: 900px;  margin-left: 20%; margin-top: 3%; margin-bottom: 3%">
+    <div class="card text-white">
+      <!-- 오늘의 추천 인테리어 -->
+        <img src="../../<%=bestpost[0].post_img_path%>" class="card-img" alt="mainImage" style="width: 900px; height:900px"> <!-- 오늘의 추천 인테리어 사진 -->
+        <div class="card-img-overlay">
+          <h2 class="card-title">Self-interior</h2>
+          <h5 class="card-text">오늘의 추천 인테리어</h5>
+          <p class="card-text">Today best interior</p>
+          <input class="form-control" type="button" value="구경하기" onclick="location.href='/interior/interior_detail/<%=bestpost[0].post_num%>'" style="background-color: rgba(255,255,255,0.5); width: 20%; float: right; margin-top: 80%">
+        </div>
+    </div>
+    <div style="width: 100%">
+        <h3 style="margin-top: 5%; margin-bottom: 5%">오늘의 추천 상품</h3>
+
+        <!-- 포문 열기 -->
+        <%for (let i = 0; i < product.length; i++) {%>
+          <div class="card text-white" style="width: 25%; float: left;">
+              <a href="/product/product_detail/<%=product[i].product_num%>"><img src="../../<%=product[i].product_img_path%>" class="card-img" alt="mainImage"></a>
+              <br>
+              <a href="/product/product_detail/<%=product[i].product_num%>"><h5><%=product[i].product_name%></h5></a>
+        </div>
+        <%}%>
+    </div>
+</div>
+

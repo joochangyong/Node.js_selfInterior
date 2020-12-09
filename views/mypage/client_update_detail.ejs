@@ -1,0 +1,84 @@
+<div class="container-fluid">
+    <div class="col-md-8 offset-4">
+        <h3 style="margin-top: 3%"><%=clients[0].name%>님 회원 정보 수정</h3></br>
+        <form action="/users/client_update/<%=user.userid%>" method="post">
+            <h5 style="margin-top: 2%; float: left; margin-right: 3%">이름</h5>
+            <input type="text" class="form-control" style="margin-left: 4%; width: 30%; float: left; margin-top: 1%" name='name'
+                value="<%=clients[0].name%>"></br></br></br>
+            <h5 style="margin-top: 2%; float: left; margin-right: 3%">전화번호</h5>
+            <input type="text" class="form-control" style="width: 30%; float: left; margin-top: 1%" name='phoneNum'
+                value="<%=clients[0].phone_num%>"></br></br></br>
+            <h5 style="margin-top: 2%; float: left; margin-right: 3%">비밀번호</h5>
+            <input type="password" class="form-control" style="width: 30%; float: left; margin-top: 1%" name='pw'
+                value="<%=clients[0].pw%>"></br></br></br>
+            <input type="submit" class="btn blue1" style="width: 41%;" value="수정완료">
+        </form></br>
+
+            <h5 style="margin-top: 2%; float: left; margin-right: 3%">회원탈퇴</h5>
+            <input type="button" onclick="location.href='/users/client_secession/<%=clients[0].id%>'" class="form-control btn-outline-danger" style="width: 30%; float: left; margin-top: 1%" value="탈퇴하기">
+
+    </div>
+</br></br>
+    <tr>
+        <div class="col-md-10 offset-1">
+            <h4 style="margin-top: 3%">배송지 | 신용카드 정보 추가</h4></br>
+
+            <table id="mytable" class="table">
+                <tbody>
+                    <form action="/users/addradd/<%=user.userid%>" method="post">
+                        <tr>
+                            <td>
+                                <h5 style="margin-top: 7%">배송지</h5>
+                            </td>
+                            <td>
+                                <h5 style="margin-top: 2%; float: left; margin-right: 3%">우편번호</h5>
+                                <input type="text" class="form-control" style="width: 30%; float: left; margin-top: 1%"
+                                    name="zipCode" value=""></br></br></br>
+
+                                <h5 style="margin-top: 4%; float: left; margin-right: 3%">기본주소</h5>
+                                <input type="text" class="form-control"
+                                    style="width: 35%; margin-top: 3%; float: left; margin-right: 4%" name="priAddress"
+                                    value="">
+
+                                <h5 style="margin-top: 4%; float: left; margin-right: 3%">상세주소</h5>
+                                <input type="text" class="form-control"
+                                    style="width: 35%; margin-top: 3%; margin-bottom: 2%" name="detAddress" value="">
+                            </td>
+                            <td>
+                                <button type="submit" class="btn blue1"
+                                    style="float: right; margin-right: 10%; margin-top: 3%; margin-top: 92%">추가</button>
+                            </td>
+                        </tr>
+                    </form>
+
+                    <form action="/users/cardadd/<%=user.userid%>" method="post">
+                    <tr>
+                        <td>
+                            <h5 style="margin-top: 10%">신용카드</h5>
+                        </td>
+                        <td>
+                            <h5 style="margin-top: 2%; float: left; margin-right: 3%">카드번호</h5>
+                            <input type="text" class="form-control"
+                                style="width: 30%; margin-top: 1%; float: left; margin-right: 4%" name="cardNum"
+                                value=""></br></br></br>
+
+                            <h5 style="margin-top: 2%; float: left;">유효기간</h5>
+                            <input type="text"
+                                style="margin-left: 3%; width: 8%; margin-top: 1%; text-align: center; float: left;"
+                                name="validity" class="form-control" placeholder="/" value="">
+
+                            <h5 style="margin-top: 2%; float: left; margin-left: 3%">CVC</h5>
+                            <input type="text"
+                                style="margin-left: 3%; width: 10%; margin-top: 1%; text-align: center; float: left;"
+                                name="CVC" class="form-control" value="">
+                        </td>
+                        <td>
+                            <button type="submit" class="btn blue1"
+                                style="float: right; margin-right: 10%; margin-top: 3%; margin-top: 80%">추가</button>
+                        </td>
+                    </tr>
+                </form>
+                </tbody>
+            </table>
+        </div>
+</div>

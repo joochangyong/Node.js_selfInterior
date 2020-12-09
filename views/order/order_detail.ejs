@@ -1,0 +1,116 @@
+<%var a = 0%>
+<%for (let i = 0; i < productinfo.length; i++) {%>
+<%a += (productinfo[i].price)*(basket[i].basket_amount);%>
+<%}%>
+<form action="/order/basket_order" method="post">
+<div class="container-fluid" style="margin-top: 3%; margin-bottom:3%">
+            <div class="row">
+                <div class="col-md-8 offset-2">
+                    <h4 style="margin-bottom: 3%">주문 페이지</h4>
+                    <table id="mytable" class="table">
+                        <thead>
+                            <th style="width:10%">번호</th>
+                            <th>상품명</th>
+                            <th style="width:10%">가격</th>
+                            <th style="width:10%">수량</th>
+                        </thead>
+                        <tbody>
+                            <%for (let i = 0; i < productinfo.length; i++) {%>
+                                <tr>
+                                    <td>
+                                        <h6><%=i+1%></h6>
+                                        <input type="hidden" name="productNum" value="<%=productinfo[i].product_num%>">
+                                    </td>
+                                    <td> <a href="#"><img src="../../<%=productinfo[i].product_img_path%>" class="basketimage" alt=""
+                                                style="float: left; margin-left: 5%"></a>
+                                        <p style="text-align: justify; margin-left: 20%; margin-top: 3%"><a href="#">
+                                                <%=productinfo[i].product_name%></a></p>
+                                        <p style="text-align: left; margin-left: 20%;"><%=productinfo[i].supplier_name%></p>
+                                    </td>
+                                    <td>
+                                        <p style="margin-top: 10%;"><%=productinfo[i].price%>원</p>
+                                        <input type="hidden" name="price" value="<%=productinfo[i].price%>">
+                                    </td>
+                                    <td>
+                                        <p name="amount" style="margin-top: 15%;"><%=basket[i].basket_amount%></p>
+                                        <input type="hidden" name="amount" value="<%=basket[i].basket_amount%>">
+                                    </td>
+                                </tr>
+                            <%}%>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <div class="col-md-8 offset-2">
+                <h5 style="margin-top: 4%">주문 정보</h5>
+                <table id="mytable" class="table">
+                    <tbody>
+    
+                        <tr>
+                            <td>
+                                <h6 style="margin-top: 2%">배송지</h6>
+                            </td>
+                            <td>
+                                <div>
+                                    <select name="Ship" class="custom-select d-block w-100" id="country" required>
+                                        <option value="">주소를 고르세요...</option>
+                                        <%for (let i = 0; i < clientinfo.length; i++) {%>
+                                            <option value="<%=clientinfo[i].address_num%>"><%=clientinfo[i].zipcode%> | <%=clientinfo[i].pri_address%> |
+                                                <%=clientinfo[i].det_address%></option>
+                                        <%}%>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+    
+                    <tr>
+                        <td>
+                            <h6 style="margin-top: 2%">신용카드</h6>
+                        </td>
+                        <td>
+                            <div>
+                                <select name="Card" class="custom-select d-block w-100" id="country" required>
+                                    <option value="">카드를 고르세요...</option>
+                                    <%for (let i = 0; i < clientinfo.length; i++) {%>
+                                        <option value="<%=clientinfo[i].card_num%>"><%=clientinfo[i].card_num%> | <%=clientinfo[i].validity%> |
+                                            <%=clientinfo[i].cvc%></option>
+                                    <%}%>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class="row col-md-8 offset-2" style="margin-top: 5%">
+                    <h5 style="margin-right: 5%; margin-left: 1%;">사용 가능한 포인트</h5>
+                    <p name=""><%=point[0].point%> point</p>
+            </div>
+
+            <div class="row col-md-8 offset-2" style="margin-top: 5%">
+                <h5 style="margin-right: 5%; margin-left: 1%;">사용할 포인트</h5>
+                <input type="number" min="0" value="0" id="b" max="<%=point[0].point%>" class="form-control" name="point" style="width:20%" />
+                <input type="button" id="c" style="margin-left: 3%;" value="적용" class="blue1 btn">
+            </div>
+
+            <div class="row col-md-8 offset-2" style="margin-top: 5%">
+                <div class="col-md-12" style="margin-top: 1%">
+                    <h5 id = "sum" style="float: left; margin-top:0.5%;margin-right: 5%">총 주문 금액 : <%=a%>원</h5>
+                    <input type="hidden" id="d" name="sum" value="<%=a%>">
+                    <input type="submit" class="blue1 btn" style="color:white; float: right; margin-right: 1%" value="주문하기">
+                </div>
+            </div>
+</div>
+</div>
+</form>
+<script>
+    var value = $('#d').val();
+    var value1;
+    $(document).ready(function(){
+        $("#c").click(function(){
+            value1 = $('#b').val();
+            $("#sum").html("총 주문 금액 : "+(value-value1)+"원");
+        });
+    });
+</script>

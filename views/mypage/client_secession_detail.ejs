@@ -1,0 +1,10 @@
+<form method="POST" action="/users/client_secession">
+    <div style="margin-bottom: 10%; margin-top: 10%; margin-left: 30%; margin-right: 30%">
+        <h3 style="margin-bottom: 6%">회원탈퇴</h3>
+        <h5>비밀번호 입력</h5>
+        <input type="text" class="form-control" name="pw">
+        <input type="submit" class="form-control blue1" value="완료" style="margin-top: 5%">
+        <input type="hidden" name="userid" value="<%= clients[0].id %>">
+        <input type="hidden" name="pw" value="<%= clients[0].pw %>">
+    </div>
+</form>

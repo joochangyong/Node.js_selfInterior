@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../head/head.ejs');%>
+    <%- include('../head/header.ejs');%>
+</head>
+
+<body>
+    <form action="/users/supplier_update/<%=supplierinfo[0].supplier_num%>" method="post">
+        <div class="row">
+            <%- include('../mypage/supplier_update_detail.ejs');%>
+        </div>
+    </form>
+</body>
+
+<footer>
+    <%- include('../footer/footer.ejs');%>
+</footer>
+
+</html>

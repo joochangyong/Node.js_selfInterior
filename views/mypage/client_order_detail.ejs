@@ -1,0 +1,50 @@
+<div class="col-8 offset-2" style="margin-top: 5%; margin-bottom: 5%">
+    <h3>주문 목록 조회</h3>
+    <table id="mytable" class="table">
+        <thead>
+            <th>번호</th>
+            <th>상품명</th>
+            <th>카드</th>
+            <th>주소지</th>
+            <th>수량</th>
+            <th>가격</th>
+            <th>주문날짜</th>
+            <th>반품신청</th>
+        </thead>
+        <tbody>
+            <% for(var i=0; i< content.length; i++) {%>
+            <tr>
+                <td>
+                    <%= i+1 %>.
+                </td>
+                <td>
+                   <a href="/product/product_detail/<%= content[i].product_num%>"> <%= content[i].product_name %></a>
+                </td>
+                <td>
+                    <%= content[i].card_num %> <br> <%= content[i].validity %>
+                </td>
+                <td>
+                    <%= content[i].zipcode %> <br> <%= content[i].pri_address %> <br> <%= content[i].det_address %>
+                </td>
+                <td>
+                    <%= content[i].amount %>
+                </td>
+                <td>
+                    <%= content[i].price %>
+                </td>
+                <td>
+                    <%= content[i].order_time %>
+                </td>
+                <td>
+                    <%console.log(content[i].return_reason);%>
+                    <%if (content[i].return_reason == null) {%>
+                        <input type="button" onclick="location.href='/users/client_return/<%= content[i].order_num %>/<%= content[i].product_num %>'" class="btn blue1" value="신청">
+                    <%} else {%>
+                        <input type="button" class="btn blue1" value="완료" disabled>
+                    <%}%>
+                </td>
+            </tr>
+                <% } %>
+        </tbody>
+    </table>
+</div>

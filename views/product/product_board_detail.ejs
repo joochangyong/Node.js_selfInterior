@@ -1,0 +1,44 @@
+<div class="col-lg-10">
+    <div style="width: 100%; float: left;">
+
+        
+
+<div class="col" style="margin-bottom: 10%">
+
+    <div class="col-3 dropdown" style="margin-left: 20%; margin-top: 3%">
+            <!-- 스토어 드롭다운 -->
+            <button class="btn dropdown-toggle blue1" style=" float: left; font-size:large; color: aliceblue" type="button"
+            id="dropdownMenu2" data-toggle="dropdown">
+            카테고리
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <%for (var i = 0; i < category.length; i++) {%>
+                <a href="/product/product_board/<%=category[i].category_name%>"><button class="dropdown-item gray1" type="button"><%=category[i].category_name%></button></a>
+            <%}%>
+        </div>
+    </div>
+    
+    
+    <%if(supplier.supplier_id != null){%>
+        <a href="/product/product_insert" style="float: right;"><button class="btn btn-outline-dark gray1" type="button" > 상품등록</button></a>
+    <%}%>
+        
+    </div>
+
+        <div class="row" style="margin-top: 3%; margin-left: 20%">
+            <% for(var i = 0; i < product.length; i++) { %>
+            <div class="col-lg-3 col-md-4 mb-4">
+                <div class="card h-100">
+                    <a href="/product/product_detail/<%=product[i].product_num%>"><img class="card-img-top" src="../../<%= product[i].product_img_path%>" alt="#"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="/product/product_detail/<%=product[i].product_num%>"><%= product[i].product_name%></a>
+                        </h4>
+                        <h5><%= product[i].price%></h5>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>

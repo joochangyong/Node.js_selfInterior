@@ -1,0 +1,152 @@
+<form class="form-signin" method="post" action="/basket/basket">
+    <div class="container-fluid" style="margin-bottom: 3%">
+        <div class="row">
+            <div class="col-md-10 offset-1">
+                <h4 style="margin-bottom: 3%; margin-left: 1%; margin-top: 3%">장바구니</h4>
+                <table id="mytable" class="table">
+                    <thead>
+                        <th style="width: 5%;">번호</th>
+                        <th style="width: 70%">상품명</th>
+                        <th style="width: 10%;">가격</th>
+                        <th>수량</th>
+                    </thead>
+                    <tbody>
+                            <%for (var i = 0; i < product.length; i++) {%>
+                                <tr>
+                                    <td>
+                                        <h6><%=i+1%></h6><input type="checkbox" name="chk[]" value="<%=product[i].product_num%>" />
+                                        <input type="hidden" name="productNum" value="<%=product[i].product_num%>">
+                                    </td>
+                                    <td> <a href="/product/product_detail/<%=product[i].product_num%>">
+                                            <img src="../<%=product[i].product_img_path%>" alt=""
+                                                style="float: left; margin-left: 5%; width: 10%; height: auto;" name=""></a>
+                                        <p style="text-align: justify; margin-left: 20%; margin-top: 2%" name="">
+                                            <a href="/product/product_detail/<%=product[i].product_num%>"><%=product[i].product_name%></a></p>
+                                        <p style="text-align: left; margin-left: 20%;" name=""><%=product[i].supplier_name%></p>
+                                    </td>
+                                    <td>
+                                        <p style="margin-top: 40%;" name=""><%=product[i].price%>원</p>
+                                    </td>
+                                    <td>
+                                        <input class="btn bg-white" name="amount" style="margin-top: 20%; width: 30%" value="<%=product[i].basket_amount%>">
+                                        <input type="submit" class="btn" style="margin-top: 20%" value="변경">
+                                    </td>
+                                </tr>
+                            <%}%>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 offset-1" style="margin-top: 1%">
+                <input type="button" class="btn blue1" style="float: right;" value="선택한 상품 주문" onclick="Order();">
+                <input type="button" class="btn blue1" style="float: right; margin-right: 3%" value="선택한 상품 삭제"
+                    onclick="Check();">
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- ----------------------------------------------------- -->
+
+<script type="text/javascript">
+    function Check() {
+        var chk = document.getElementsByName("chk[]"); // 체크박스객체를 담는다
+        var len = chk.length;    //체크박스의 전체 개수
+        var checkRow = '';      //체크된 체크박스의 value를 담기위한 변수
+        var checkCnt = 0;        //체크된 체크박스의 개수
+        var checkLast = '';      //체크된 체크박스 중 마지막 체크박스의 인덱스를 담기위한 변수
+        var rowid = '';             //체크된 체크박스의 모든 value 값을 담는다
+        var cnt = 0;
+        var delete_book = confirm("선택한 상품을 삭제하시겠습니까?");  //사용자한테 확인, 취소 묻는 alter
+
+        for (var i = 0; i < len; i++) {
+
+            if (chk[i].checked == true) {
+                checkCnt++;        //체크된 체크박스의 개수
+                checkLast = i;     //체크된 체크박스의 인덱스
+            }
+        }
+        for (var i = 0; i < len; i++) {
+            if (chk[i].checked == true) {  //체크가 되어있는 값 구분
+                checkRow = chk[i].value;
+                if (checkCnt == 1) {                            //체크된 체크박스의 개수가 한 개 일때,
+                    rowid += "'" + checkRow + "'";        //'value'의 형태 (뒤에 ,(콤마)가 붙지않게)
+                } else {                                            //체크된 체크박스의 개수가 여러 개 일때,
+                    if (i == checkLast) {                     //체크된 체크박스 중 마지막 체크박스일 때,
+                        rowid += "'" + checkRow + "'";  //'value'의 형태 (뒤에 ,(콤마)가 붙지않게)
+                    } else {
+                        rowid += "'" + checkRow + "',";	 //'value',의 형태 (뒤에 ,(콤마)가 붙게)         			
+                    }
+                }
+                cnt++; // 왜 쓴거죠??
+                checkRow = '';    //checkRow초기화.
+            }
+        }
+        //'value1', 'value2', 'value3' 의 형태로 출력된다.
+        if (delete_book == true) {
+
+            if (rowid == '') {
+                alert("선택된 상품이 없습니다");
+            } else {
+                // alert(rowid);
+                location.href = '/basket/delete_product/' + rowid
+            }
+        }
+        else if (delete_book == false) {
+            alert("상품 삭제를 취소하였습니다")
+        }
+    }
+
+    // -----------------------------------------------------------
+
+    function Order() {
+        var chk = document.getElementsByName("chk[]"); // 체크박스객체를 담는다
+        var len = chk.length;    //체크박스의 전체 개수
+        var checkRow = '';      //체크된 체크박스의 value를 담기위한 변수
+        var checkCnt = 0;        //체크된 체크박스의 개수
+        var checkLast = '';      //체크된 체크박스 중 마지막 체크박스의 인덱스를 담기위한 변수
+        var orderValue = '';             //체크된 체크박스의 모든 value 값을 담는다
+        var cnt = 0;
+        var delete_book = confirm("선택한 상품을 주문하시겠습니까?");  //사용자한테 확인, 취소 묻는 alter
+
+
+        for (var i = 0; i < len; i++) {
+            if (chk[i].checked == true) {
+                checkCnt++;        //체크된 체크박스의 개수
+                checkLast = i;     //체크된 체크박스의 인덱스
+            }
+        }
+        for (var i = 0; i < len; i++) {
+            if (chk[i].checked == true) {  //체크가 되어있는 값 구분
+                checkRow = chk[i].value;
+                if (checkCnt == 1) {                            //체크된 체크박스의 개수가 한 개 일때,
+                    orderValue += "'" + checkRow + "'";        //'value'의 형태 (뒤에 ,(콤마)가 붙지않게)
+                } else {                                            //체크된 체크박스의 개수가 여러 개 일때,
+                    if (i == checkLast) {                     //체크된 체크박스 중 마지막 체크박스일 때,
+                        orderValue += "'" + checkRow + "'";  //'value'의 형태 (뒤에 ,(콤마)가 붙지않게)
+                    } else {
+                        orderValue += "'" + checkRow + "',";	 //'value',의 형태 (뒤에 ,(콤마)가 붙게)         			
+                    }
+                }
+                cnt++; // 왜 쓴거죠??
+                checkRow = '';    //checkRow초기화.
+            }
+        }
+        //'value1', 'value2', 'value3' 의 형태로 출력된다.
+        if (delete_book == true) {
+
+            if (orderValue == '') {
+                alert("선택된 상품이 없습니다");
+            } else {
+                // alert(orderValue);
+                location.href = '/order/basket_order/' + orderValue
+            }
+        }
+        else if (delete_book == false) {
+            alert("상품 주문을 취소하였습니다")
+        }
+    }
+</script>

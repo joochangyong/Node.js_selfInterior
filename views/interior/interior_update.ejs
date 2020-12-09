@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <%- include('../head/head.ejs');%>
+    <%- include('../head/header.ejs');%>
+    <script>
+        var arrInput1 = new Array(0);
+        var arrInputValue1 = new Array(0);
+        var arrInput2 = new Array(0);
+        var arrInputValue2 = new Array(0);
+    
+        function addInput1() {
+          arrInput1.push(arrInput1.length);
+          arrInputValue1.push("");
+          arrInput2.push(arrInput2.length);
+          arrInputValue2.push("");
+          display1();
+        }
+    
+        function display1() {
+          document.getElementById('parah1').innerHTML = "";
+          for (intI = 0; intI < arrInput1.length; intI++) {
+            document.getElementById('parah1').innerHTML += createInput1(arrInput1[intI], arrInput2[intI], arrInputValue1[intI], arrInputValue2[intI]);
+          }
+        }
+    
+        function saveValue1(intId1, strValue1) {
+          arrInputValue1[intId1] = strValue1;
+        }
+        function saveValue2(intId2, strValue2) {
+          arrInputValue2[intId2] = strValue2;
+        }
+    
+        function createInput1(id1, id2, value1, value2) {
+          return "<input type='text' name='tag_name' id='test2 " + id2 + "' onChange='javascript:saveValue2(" + id2 + ",this.value)' value='" + value2 + "'><input type='text' name='link' id='test1 " + id1 + "' onChange='javascript:saveValue1(" + id1 + ",this.value)' value='" + value1 + "'><br>";
+        }
+    
+        function deleteInput1() {
+          if (arrInput1.length > 0) {
+            arrInput1.pop();
+            arrInput2.pop();
+            arrInputValue1.pop();
+            arrInputValue2.pop();
+          }
+          display1();
+        }
+      </script>
+</head>
+
+
+<body>
+    <form class="form-img" method="POST" action="/interior/interior_update/<%= post[0].post_num %>"
+        enctype="multipart/form-data">
+        <div class="row">
+            <%- include('../interior/interior_update_detail.ejs');%>
+        </div>
+    </form>
+</body>
+
+<footer>
+    <%- include('../footer/footer.ejs');%>
+</footer>
+
+</html>

@@ -1,0 +1,16 @@
+<form method="POST" action="/users/client_return">
+    <div style="margin-left:25%; margin-top:3%; margin-bottom:3%">
+        <h3 style="margin-bottom: 3%">상품 반품 신청</h3>
+        <h5 style="float:left; margin-right: 5%; width: 150px;">상품명 </h5>
+        <p> <%=order[0].product_name%></p>
+        <h5 style="float:left; margin-right: 5%; width: 150px;">수량 </h5>
+        <p> <%=order[0].amount%>개</p>
+        <h5 style="float:left; margin-right: 5%; width: 150px;">가격 </h5>
+        <p> <%=order[0].amount*order[0].price%>원</p>
+        <input type="hidden" name="ordernum" value="<%= order[0].order_num %>">
+        <input type="hidden" name="productnum" value="<%= order[0].product_num %>">
+
+        <h5 style="float:left; margin-right: 5%; width: 150px;">반품사유 </h5> <input type="text" name="product_return" class="form-control" style="width:40%; height: 150px; margin-bottom: 2%"/>
+        <input class="btn blue1" type="submit" style="width: 58%" value="완료"/>
+    </div>
+</form>
